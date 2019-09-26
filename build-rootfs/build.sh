@@ -39,5 +39,8 @@ cp src/dash   rootfs/bin
 cd rootfs/bin
 ln -s dash sh
 
+cd ..
+ls -lR
+
 echo
 echo "=== Done!"
