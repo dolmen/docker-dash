@@ -1,2 +1,5 @@
-.git
-.vagrant
+/.[a-z]*
+/README.md
+/LICENSE
+/Dockerfile
+
