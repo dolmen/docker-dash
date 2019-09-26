@@ -26,6 +26,6 @@ MAINTAINER Olivier Mengué <dolmen@cpan.org>
 HEALTHCHECK NONE
 ENV PATH=/bin
 
-COPY --from=builder /src/dash/rootfs /
-
 CMD ["/bin/sh"]
+
+COPY --from=builder /src/dash/rootfs /
