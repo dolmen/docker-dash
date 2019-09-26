@@ -1,21 +1,16 @@
 #!/bin/bash
 #
-# Build a minimal static DASH binary, without its GPLv2 part.
+# Build a minimal static DASH binary (without its GPLv2 part) and a root filesystem.
 #
 # @see http://gondor.apana.org.au/~herbert/dash/
 # @see http://man7.org/linux/man-pages/man7/signal.7.html
 #
 
-#set -e
-#set -x
-
-rm -rf dash temp
-
+set -euo pipefail
 
 echo "=== Fetching dash source..."
 git clone git://git.kernel.org/pub/scm/utils/dash/dash.git
 cd dash
-
 
 echo "=== Fixing signames.c mechanism..."
 cp  ../new-signames.c  src/signames.c
@@ -32,24 +27,17 @@ make
 
 echo
 echo "=== Checking dash binary..."
-
-ldd src/dash
-cp src/dash  ../dash-static
-
+! ldd src/dash
 
 echo
-echo "=== Building rootfs.tar.gz ..." 
+echo "=== Building root filesystem ..."
 
-mkdir -p temp temp/bin
-cp ../LICENSE-OF-THIS-PATCHED-DASH    temp/
+mkdir -p rootfs/bin
+cp ../LICENSE-OF-THIS-PATCHED-DASH    rootfs/
 
-cp src/dash   temp/bin
-cd temp/bin
+cp src/dash   rootfs/bin
+cd rootfs/bin
 ln -s dash sh
-ln -s dash bash
-cd ..
-tar zcvf ../../dash-rootfs.tar.gz *
-
 
 echo
 echo "=== Done!"

@@ -18,7 +18,6 @@ RUN DEBIAN_FRONTEND=noninteractive  \
 WORKDIR /src
 COPY    build-rootfs  /src
 RUN     ./build.sh
-RUN   ls -lR
 
 # pull base image
 FROM scratch
@@ -27,6 +26,6 @@ MAINTAINER Olivier Mengué <dolmen@cpan.org>
 HEALTHCHECK NONE
 ENV PATH=/bin
 
-COPY --from=builder /src/dash/temp /
+COPY --from=builder /src/dash/rootfs /
 
 CMD ["/bin/sh"]
