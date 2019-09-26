@@ -42,13 +42,6 @@ ADD  ...
 
 ```
 
-
-## About the rootfs
-
-To build the rootfs on your own, see [instructions](build-rootfs/README.md) for more details.
-
-
-
 ## Dependencies
 
 - `scratch`.
@@ -56,6 +49,7 @@ To build the rootfs on your own, see [instructions](build-rootfs/README.md) for 
 
 ## History
 
+- 1.2 - Build Docker image using a single Dockerfile for latest dash from git (Olivier Mengué).
 - 1.1 - Replace the only GPLv2 part in DASH (`mksignames.c`) with an MIT-style data source.
 - 1.0 - Initial release.
 
@@ -63,7 +57,7 @@ To build the rootfs on your own, see [instructions](build-rootfs/README.md) for 
 ## Author
 
 William Yeh, william.pjyeh@gmail.com
-
+Olivier Mengué, dolmen@cpan.org
 
 ## License
 
@@ -73,4 +67,4 @@ This image contains three components; each has its own license statement, respec
 
 2. The second part, the `new-signames.c` file, is hand-crafted by me according to an **MIT**-style data source: [“SIGNAL(7) in Linux Programmer’s Manual”](http://man7.org/linux/man-pages/man7/signal.7.html).
 
-3. The remain parts, written by me, is released to **public domain**.  See [LICENSE](LICENSE) file for details.
+3. The remain parts, written by William Yeh and Olivier Mengué, is released to **public domain**.  See [LICENSE](LICENSE) file for details.

@@ -5,10 +5,28 @@
 # @see http://man7.org/linux/man-pages/man7/signal.7.html
 #
 
+
+FROM ubuntu:disco AS builder
+
+# install toolchain for building...
+RUN DEBIAN_FRONTEND=noninteractive  \
+    apt-get update  &&  \
+    apt-get -f -y install git build-essential automake
+
+
+
+WORKDIR /src
+COPY    build-rootfs  /src
+RUN     ./build.sh
+RUN   ls -lR
+
 # pull base image
 FROM scratch
-MAINTAINER William Yeh <william.pjyeh@gmail.com>
+MAINTAINER Olivier Mengué <dolmen@cpan.org>
 
-ADD dash-rootfs.tar.gz /
+HEALTHCHECK NONE
+ENV PATH=/bin
+
+COPY --from=builder /src/dash/temp /
 
 CMD ["/bin/sh"]
